@@ -1,5 +1,12 @@
+# Get node labels
+kubectl get nodes --show-labels
 
+# Check health etcd
+kubectl get --raw=/healthz/etcd
 
+# Query API Server
+kubectl get --raw=/apis
+kubectl get --raw=/logs/kube-apiserver.log
 
 # Get nodes by oldest 
 kubectl get nodes --sort-by=".status.conditions[?(@.reason == 'KubeletReady' )].lastTransitionTime"

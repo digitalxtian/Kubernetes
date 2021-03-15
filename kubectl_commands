@@ -1,0 +1,5 @@
+
+
+
+# Get nodes by oldest 
+kubectl get nodes --sort-by=".status.conditions[?(@.reason == 'KubeletReady' )].lastTransitionTime"

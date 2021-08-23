@@ -11,11 +11,11 @@ kubectl get --raw=/logs/kube-apiserver.log
 # Get nodes by oldest 
 kubectl get nodes --sort-by=".status.conditions[?(@.reason == 'KubeletReady' )].lastTransitionTime"
 
-kubectl --kubeconfig /Users/cmagana/.kube/kubeconfig_sa-polaris-sbox-us-east-1 get nodes -o custom-columns=NAME:.metadata.name | grep v1.14 | sort -k4
+kubectl  get nodes -o custom-columns=NAME:.metadata.name | grep v1.14 | sort -k4
 
-kubectl taint nodes ip-10-13–0-107.ec2.internal key=value:NoSchedule
+kubectl taint nodes {} key=value:NoSchedule
 
-kubectl drain ip-10-5-57-215.ec2.internal --ignore-daemonsets --delete-emptydir-data
+kubectl drain {} --ignore-daemonsets --delete-emptydir-data
 
 Checks After Upgrade:
 

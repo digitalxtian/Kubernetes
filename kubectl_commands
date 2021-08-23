@@ -10,3 +10,28 @@ kubectl get --raw=/logs/kube-apiserver.log
 
 # Get nodes by oldest 
 kubectl get nodes --sort-by=".status.conditions[?(@.reason == 'KubeletReady' )].lastTransitionTime"
+
+kubectl --kubeconfig /Users/cmagana/.kube/kubeconfig_sa-polaris-sbox-us-east-1 get nodes -o custom-columns=NAME:.metadata.name | grep v1.14 | sort -k4
+
+kubectl taint nodes ip-10-13–0-107.ec2.internal key=value:NoSchedule
+
+kubectl drain ip-10-5-57-215.ec2.internal --ignore-daemonsets --delete-emptydir-data
+
+Checks After Upgrade:
+
+kubectl version --short
+
+kubectl get daemonset kube-proxy --namespace kube-system -o=jsonpath='{$.spec.template.spec.containers[:1].image}'
+
+kubectl get deployment coredns --namespace kube-system -o=jsonpath='{$.spec.template.spec.containers[:1].image}'
+
+kubectl describe daemonset aws-node --namespace kube-system | grep Image | cut -d "/" -f 2
+
+Kubectl get nodes |  sed -n '1!p' | sort -k4
+
+k get ns | sed -n '1!p' | awk '{print $1}'
+
+kube get apiservices.apiregistration.k8s.io
+
+kubectl -n $$$$$ get pdb
+kubectl -n $$$$$ delete pdb $deployment kubectl -n $$$$$ delete po  k delete po --selector=name=$deployment
